@@ -1,0 +1,3 @@
+include ':TextModule'
+include ':app'
+rootProject.name = "TextView"

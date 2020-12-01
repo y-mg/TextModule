@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Number Format Text -->
+    <declare-styleable name="NumberFormatTextStyle">
+        <attr name="nfAddTextStart" format="string"/>
+        <attr name="nfAddTextEnd" format="string"/>
+    </declare-styleable>
+
+
+
+    <!-- Decimal Format Text -->
+    <declare-styleable name="DecimalFormatTextStyle">
+        <attr name="dfAddTextStart" format="string"/>
+        <attr name="dfAddTextEnd" format="string"/>
+    </declare-styleable>
+
+
+
+    <!-- Decimal Format Up Text -->
+    <declare-styleable name="DecimalFormatUpTextStyle">
+        <attr name="dfuAddTextStart" format="string"/>
+        <attr name="dfuAddTextEnd" format="string"/>
+        <attr name="dfuCutLength" format="integer"/>
+    </declare-styleable>
+
+
+
+    <!-- Decimal Format Down Text -->
+    <declare-styleable name="DecimalFormatDownTextStyle">
+        <attr name="dfdAddTextStart" format="string"/>
+        <attr name="dfdAddTextEnd" format="string"/>
+        <attr name="dfdCutLength" format="integer"/>
+    </declare-styleable>
+
+</resources>

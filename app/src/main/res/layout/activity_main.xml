@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.ymg.textmodule.number.NumberFormatTextView
+        android:id="@+id/numberFormatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="5000"
+        app:nfAddTextStart="Point: "
+        app:nfAddTextEnd="P"
+        app:layout_constraintBottom_toTopOf="@+id/decimalFormatTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText"
+        tools:text="5,000" />
+
+
+    <com.ymg.textmodule.decimal.DecimalFormatTextView
+        android:id="@+id/decimalFormatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="1000.5555555555"
+        app:dfAddTextStart="BitCoin: "
+        app:dfAddTextEnd="BTC"
+        app:layout_constraintBottom_toTopOf="@+id/decimalFormatUpTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberFormatTextView"
+        tools:ignore="HardcodedText"
+        tools:text="1,000.5555555555" />
+
+
+    <com.ymg.textmodule.decimal.DecimalFormatUpTextView
+        android:id="@+id/decimalFormatUpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="1000.5555555555"
+        app:dfuAddTextStart="USD: "
+        app:dfuAddTextEnd="$"
+        app:layout_constraintBottom_toTopOf="@+id/decimalFormatDownTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decimalFormatTextView"
+        tools:ignore="HardcodedText"
+        tools:text="1,000.55555558" />
+
+
+    <com.ymg.textmodule.decimal.DecimalFormatDownTextView
+        android:id="@+id/decimalFormatDownTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="1000.5555555555"
+        app:dfdAddTextStart="USD: "
+        app:dfdAddTextEnd="$"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decimalFormatUpTextView"
+        tools:ignore="HardcodedText"
+        tools:text="1,000.55555555" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
