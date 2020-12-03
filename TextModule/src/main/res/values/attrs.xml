@@ -13,6 +13,7 @@
     <declare-styleable name="DecimalFormatTextStyle">
         <attr name="dfAddTextStart" format="string"/>
         <attr name="dfAddTextEnd" format="string"/>
+        <attr name="dfIsStripZero" format="boolean"/>
     </declare-styleable>
 
 
@@ -22,6 +23,7 @@
         <attr name="dfuAddTextStart" format="string"/>
         <attr name="dfuAddTextEnd" format="string"/>
         <attr name="dfuCutLength" format="integer"/>
+        <attr name="dfuIsStripZero" format="boolean"/>
     </declare-styleable>
 
 
@@ -31,6 +33,7 @@
         <attr name="dfdAddTextStart" format="string"/>
         <attr name="dfdAddTextEnd" format="string"/>
         <attr name="dfdCutLength" format="integer"/>
+        <attr name="dfdIsStripZero" format="boolean"/>
     </declare-styleable>
 
 </resources>

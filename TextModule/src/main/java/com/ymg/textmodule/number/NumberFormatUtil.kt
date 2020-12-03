@@ -10,44 +10,14 @@ object NumberFormatUtil {
      * , 로 구분
      */
     fun getNumberCommaFormat(text: String): String {
-        val value = text
-            .replace(",", "")
-            .trim()
-            .toBigDecimal()
-            .stripTrailingZeros()
+        val value = text.replace("[^\\d]".toRegex(), "")
 
-        val strValue = value.toPlainString()
-
-
-        return when {
-            strValue.toDouble() == 0.0 -> {
-                val formatter = NumberFormat.getNumberInstance()
-                formatter.format(value)
-            }
-
-            strValue.contains(".") -> {
-                val decimal = strValue.substring(strValue.lastIndexOf("."))
-                val number = strValue.replace(decimal, "")
-
-                val formatter = NumberFormat.getNumberInstance()
-
-                val numberResult = formatter.format(number.toBigDecimal())
-
-                when {
-                    number.contains("-0") -> {
-                        "-$numberResult"
-                    }
-
-                    else -> {
-                        numberResult
-                    }
-                }
-            }
-
-            else -> {
-                val formatter = NumberFormat.getNumberInstance()
-                formatter.format(value)
-            }
+        return if (value.isNotEmpty()) {
+            val formatter = NumberFormat.getNumberInstance()
+            val number = formatter.format(value.toBigDecimal())
+            number
+        } else {
+            ""
         }
     }
 }

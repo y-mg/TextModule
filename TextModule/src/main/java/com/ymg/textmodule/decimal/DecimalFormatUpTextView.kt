@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.ymg.textmodule.R
 
 
+
 class DecimalFormatUpTextView : AppCompatTextView {
 
     // Text 앞에 붙일 텍스트, Text 뒤에 붙일 텍스트
@@ -15,6 +16,9 @@ class DecimalFormatUpTextView : AppCompatTextView {
 
     // 소수점 반올림 자릿수
     private var cutLength: Int = 8
+
+    // 소수 끝에 0 제거 여부
+    private var isStripZero: Boolean = true
 
 
 
@@ -64,10 +68,22 @@ class DecimalFormatUpTextView : AppCompatTextView {
                 8
             )
 
+        // 소수 끝에 0 제거 여부
+        val isStripZero =
+            typedArray?.getBoolean(
+                R.styleable.DecimalFormatUpTextStyle_dfuIsStripZero,
+                true
+            )
+
         typedArray?.recycle()
 
 
-        setInit(addTextStart, addTextEnd, cutLength)
+        setInit(
+            addTextStart = addTextStart ?: "",
+            addTextEnd = addTextEnd ?: "",
+            cutLength = cutLength ?: 8,
+            isStripZero = isStripZero ?: true
+        )
     }
 
 
@@ -76,23 +92,12 @@ class DecimalFormatUpTextView : AppCompatTextView {
      * 설정
      */
     private fun setInit(
-        addTextStart: String?,
-        addTextEnd: String?,
-        cutLength: Int?
+        addTextStart: String = "",
+        addTextEnd: String = "",
+        cutLength: Int = 8,
+        isStripZero: Boolean = true
     ) {
-        addTextStart?.let {
-            this.addTextStart = it
-        }
-
-        addTextEnd?.let {
-            this.addTextEnd = it
-        }
-
-        cutLength?.let {
-            this.cutLength = it
-        }
-
-        setFormatText(this.text.toString(), this.cutLength, this.addTextStart, this.addTextEnd, true)
+        setFormatText(this.text.toString(), addTextStart, addTextEnd, cutLength, isStripZero)
     }
 
 
@@ -102,94 +107,24 @@ class DecimalFormatUpTextView : AppCompatTextView {
      */
     @SuppressLint("SetTextI18n")
     fun setFormatText(
-        text: String? = "",
+        text: String = "",
+        addTextStart: String = this.addTextStart,
+        addTextEnd: String = this.addTextEnd,
         cutLength: Int = this.cutLength,
-        addTextStart: String? = this.addTextStart,
-        addTextEnd: String? = this.addTextEnd,
-        isStripZero: Boolean = true
+        isStripZero: Boolean = this.isStripZero
     ) {
+        this.addTextStart = addTextStart
+        this.addTextEnd = addTextEnd
         this.cutLength = cutLength
-
-        addTextStart?.let {
-            this.addTextStart = it
-        }
-        addTextEnd?.let {
-            this.addTextEnd = it
-        }
+        this.isStripZero = isStripZero
 
 
-        val formatText: String? = when {
-            !text.isNullOrEmpty() -> {
-                text
-            }
+        val value = text.replace("[^[-]?\\d.]".toRegex(), "")
 
-            else -> {
-                ""
-            }
-        }
-
-        formatText?.let {
-            when {
-                it.isEmpty() -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart"
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = ""
-                        }
-                    }
-                }
-
-                it.isNotEmpty() && it.last().toString() == "." -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaUpFormat(it.replace(".", ""), cutLength, isStripZero)}.$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaUpFormat(it.replace(".", ""), cutLength, isStripZero)}."
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaUpFormat(it.replace(".", ""), cutLength, isStripZero)}.$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaUpFormat(it.replace(".", ""), cutLength, isStripZero)}."
-                        }
-                    }
-                }
-
-                it.isNotEmpty() && it.last().toString() != "." -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaUpFormat(it, cutLength, isStripZero)}$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaUpFormat(it, cutLength, isStripZero)}"
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaUpFormat(it, cutLength, isStripZero)}$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = DecimalFormatUtil.getDecimalCommaUpFormat(it, cutLength, isStripZero)
-                        }
-                    }
-                }
-            }
+        if (value.isNotEmpty()) {
+            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaUpFormat(value, cutLength, isStripZero)}$addTextEnd"
+        } else {
+            this.text = "${addTextStart}${addTextEnd}"
         }
     }
 
@@ -199,10 +134,6 @@ class DecimalFormatUpTextView : AppCompatTextView {
      * 값 가져오기
      */
     fun getFormatText(): String {
-        return this.text.toString()
-            .replace(",", "")
-            .replace(addTextStart, "")
-            .replace(addTextEnd, "")
-            .trim()
+        return this.text.toString().replace("[^[-]?\\d.]".toRegex(), "")
     }
 }

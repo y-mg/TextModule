@@ -1,5 +1,7 @@
 package com.ymg.textmodule.decimal
 
+import android.util.Log
+import java.lang.Exception
 import java.math.RoundingMode
 import java.text.NumberFormat
 
@@ -11,86 +13,39 @@ object DecimalFormatUtil {
      * , 로 구분
      */
     fun getDecimalCommaFormat(text: String, isStripZero: Boolean = true): String {
-        val value = when(isStripZero) {
+        val value = when (isStripZero) {
             true -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
                     .stripTrailingZeros()
+                    .toPlainString()
             }
 
             false -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
+                    .toPlainString()
             }
         }
 
-        val strValue = value.toPlainString()
+        return try {
+            when {
+                value.contains(".") -> {
+                    val number = value.substring(0, value.indexOf("."))
+                    val decimal = value.substring(value.indexOf("."))
 
-        when (isStripZero) {
-            true -> {
-                return when {
-                    strValue.toDouble() == 0.0 -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                    val formatter = NumberFormat.getNumberInstance()
+                    "${formatter.format(number.toBigDecimal())}${decimal}"
+                }
 
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        val decimalResult = decimal.replace(".", "")
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                else -> {
+                    val formatter = NumberFormat.getNumberInstance()
+                    formatter.format(value)
                 }
             }
-
-            false -> {
-                return when {
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        val decimalResult = decimal.replace(".", "")
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
-                }
-            }
+        } catch (e: Exception) {
+            Log.e("ERROR!!!", e.message.toString())
+            return ""
         }
     }
 
@@ -100,91 +55,40 @@ object DecimalFormatUtil {
      * , 로 구분 + 소수점 반올림
      */
     fun getDecimalCommaUpFormat(text: String, length: Int, isStripZero: Boolean = true): String {
-        val value = when(isStripZero) {
+        val value = when (isStripZero) {
             true -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
                     .setScale(length, RoundingMode.CEILING)
                     .stripTrailingZeros()
+                    .toPlainString()
             }
 
             false -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
+                    .toPlainString()
             }
         }
 
-        val strValue = value.toPlainString()
+        return try {
+            when {
+                value.contains(".") -> {
+                    val number = value.substring(0, value.indexOf("."))
+                    val decimal = value.substring(value.indexOf("."))
 
-        when (isStripZero) {
-            true -> {
-                return when {
-                    strValue.toDouble() == 0.0 -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                    val formatter = NumberFormat.getNumberInstance()
+                    "${formatter.format(number.toBigDecimal())}${decimal}"
+                }
 
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        val decimalResult = decimal.replace(".", "")
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                else -> {
+                    val formatter = NumberFormat.getNumberInstance()
+                    formatter.format(value)
                 }
             }
-
-            false -> {
-                return when {
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        var decimalResult = decimal.replace(".", "")
-
-                        if (decimalResult.length > length) {
-                            decimalResult = "$numberResult.${decimalResult}".toBigDecimal().setScale(length, RoundingMode.CEILING).toPlainString().replace("$numberResult.", "")
-                        }
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
-                }
-            }
+        } catch (e: Exception) {
+            Log.e("ERROR!!!", e.message.toString())
+            return ""
         }
     }
 
@@ -194,91 +98,40 @@ object DecimalFormatUtil {
      * , 로 구분 + 소수점 내림
      */
     fun getDecimalCommaDownFormat(text: String, length: Int, isStripZero: Boolean = true): String {
-        val value = when(isStripZero) {
+        val value = when (isStripZero) {
             true -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
                     .setScale(length, RoundingMode.FLOOR)
                     .stripTrailingZeros()
+                    .toPlainString()
             }
 
             false -> {
-                text.replace(",", "")
-                    .trim()
+                text.replace("[^[-]?\\d.]".toRegex(), "")
                     .toBigDecimal()
+                    .toPlainString()
             }
         }
 
-        val strValue = value.toPlainString()
+        return try {
+            when {
+                value.contains(".") -> {
+                    val number = value.substring(0, value.indexOf("."))
+                    val decimal = value.substring(value.indexOf("."))
 
-        when (isStripZero) {
-            true -> {
-                return when {
-                    strValue.toDouble() == 0.0 -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                    val formatter = NumberFormat.getNumberInstance()
+                    "${formatter.format(number.toBigDecimal())}${decimal}"
+                }
 
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        val decimalResult = decimal.replace(".", "")
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
+                else -> {
+                    val formatter = NumberFormat.getNumberInstance()
+                    formatter.format(value)
                 }
             }
-
-            false -> {
-                return when {
-                    strValue.contains(".") -> {
-                        val decimal = strValue.substring(strValue.lastIndexOf("."))
-                        val number = strValue.replace(decimal, "")
-
-                        val formatter = NumberFormat.getNumberInstance()
-
-                        val numberResult = formatter.format(number.toBigDecimal())
-                        var decimalResult = decimal.replace(".", "")
-
-                        if (decimalResult.length > length) {
-                            decimalResult = "$numberResult.${decimalResult}".toBigDecimal().setScale(length, RoundingMode.FLOOR).toPlainString().replace("$numberResult.", "")
-                        }
-
-                        when {
-                            number.contains("-0") -> {
-                                "-$numberResult.$decimalResult"
-                            }
-
-                            else -> {
-                                "$numberResult.$decimalResult"
-                            }
-                        }
-                    }
-
-                    else -> {
-                        val formatter = NumberFormat.getNumberInstance()
-                        formatter.format(value)
-                    }
-                }
-            }
+        } catch (e: Exception) {
+            Log.e("ERROR!!!", e.message.toString())
+            return ""
         }
     }
 }

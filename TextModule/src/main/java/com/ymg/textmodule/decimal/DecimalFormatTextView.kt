@@ -7,11 +7,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.ymg.textmodule.R
 
 
+
 class DecimalFormatTextView : AppCompatTextView {
 
     // Text 앞에 붙일 텍스트, Text 뒤에 붙일 텍스트
     private var addTextStart: String = ""
     private var addTextEnd: String = ""
+
+    // 소수 끝에 0 제거 여부
+    private var isStripZero: Boolean = true
 
 
 
@@ -55,10 +59,20 @@ class DecimalFormatTextView : AppCompatTextView {
                 R.styleable.DecimalFormatTextStyle_dfAddTextEnd
             )
 
+        // 소수 끝에 0 제거 여부
+        val isStripZero =
+            typedArray?.getBoolean(
+                R.styleable.DecimalFormatTextStyle_dfIsStripZero,
+                true
+            )
+
         typedArray?.recycle()
 
-
-        setInit(addTextStart, addTextEnd)
+        setInit(
+            addTextStart = addTextStart ?: "",
+            addTextEnd = addTextEnd ?: "",
+            isStripZero = isStripZero ?: true,
+        )
     }
 
 
@@ -67,18 +81,11 @@ class DecimalFormatTextView : AppCompatTextView {
      * 설정
      */
     private fun setInit(
-        addTextStart: String?,
-        addTextEnd: String?
+        addTextStart: String = "",
+        addTextEnd: String = "",
+        isStripZero: Boolean = true
     ) {
-        addTextStart?.let {
-            this.addTextStart = it
-        }
-
-        addTextEnd?.let {
-            this.addTextEnd = it
-        }
-
-        setFormatText(this.text.toString(), this.addTextStart, this.addTextEnd, true)
+        setFormatText(this.text.toString(), addTextStart, addTextEnd, isStripZero)
     }
 
 
@@ -88,91 +95,22 @@ class DecimalFormatTextView : AppCompatTextView {
      */
     @SuppressLint("SetTextI18n")
     fun setFormatText(
-        text: String? = "",
-        addTextStart: String? = this.addTextStart,
-        addTextEnd: String? = this.addTextEnd,
-        isStripZero: Boolean = true
+        text: String = "",
+        addTextStart: String = this.addTextStart,
+        addTextEnd: String = this.addTextEnd,
+        isStripZero: Boolean = this.isStripZero
     ) {
-        addTextStart?.let {
-            this.addTextStart = it
-        }
-        addTextEnd?.let {
-            this.addTextEnd = it
-        }
+        this.addTextStart = addTextStart
+        this.addTextEnd = addTextEnd
+        this.isStripZero = isStripZero
 
 
-        val formatText: String? = when {
-            !text.isNullOrEmpty() -> {
-                text
-            }
+        val value = text.replace("[^[-]?\\d.]".toRegex(), "")
 
-            else -> {
-                ""
-            }
-        }
-
-        formatText?.let {
-            when {
-                it.isEmpty() -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart"
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = ""
-                        }
-                    }
-                }
-
-                it.isNotEmpty() && it.last().toString() == "." -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaFormat(it.replace(".", ""), isStripZero)}.$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaFormat(it.replace(".", ""), isStripZero)}."
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaFormat(it.replace(".", ""), isStripZero)}.$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaFormat(it.replace(".", ""), isStripZero)}."
-                        }
-                    }
-                }
-
-                it.isNotEmpty() && it.last().toString() != "." -> {
-                    when {
-                        !addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaFormat(it, isStripZero)}$addTextEnd"
-                        }
-
-                        !addTextStart.isNullOrEmpty() && addTextEnd.isNullOrEmpty() -> {
-                            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaFormat(it, isStripZero)}"
-                        }
-
-                        addTextStart.isNullOrEmpty() && !addTextEnd.isNullOrEmpty() -> {
-                            this.text = "${DecimalFormatUtil.getDecimalCommaFormat(it, isStripZero)}$addTextEnd"
-                        }
-
-                        else -> {
-                            this.text = DecimalFormatUtil.getDecimalCommaFormat(it, isStripZero)
-                        }
-                    }
-                }
-            }
+        if (value.isNotEmpty()) {
+            this.text = "$addTextStart${DecimalFormatUtil.getDecimalCommaFormat(value, isStripZero)}$addTextEnd"
+        } else {
+            this.text = "${addTextStart}${addTextEnd}"
         }
     }
 
@@ -182,10 +120,6 @@ class DecimalFormatTextView : AppCompatTextView {
      * 값 가져오기
      */
     fun getFormatText(): String {
-        return this.text.toString()
-            .replace(",", "")
-            .replace(addTextStart, "")
-            .replace(addTextEnd, "")
-            .trim()
+        return this.text.toString().replace("[^[-]?\\d.]".toRegex(), "")
     }
 }

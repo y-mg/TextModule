@@ -32,6 +32,7 @@
         android:text="1000.5555555555"
         app:dfAddTextStart="BitCoin: "
         app:dfAddTextEnd="BTC"
+        app:dfIsStripZero="true"
         app:layout_constraintBottom_toTopOf="@+id/decimalFormatUpTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +50,14 @@
         android:text="1000.5555555555"
         app:dfuAddTextStart="USD: "
         app:dfuAddTextEnd="$"
+        app:dfuCutLength="5"
+        app:dfuIsStripZero="true"
         app:layout_constraintBottom_toTopOf="@+id/decimalFormatDownTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/decimalFormatTextView"
         tools:ignore="HardcodedText"
-        tools:text="1,000.55555558" />
+        tools:text="1,000.55556" />
 
 
     <com.ymg.textmodule.decimal.DecimalFormatDownTextView
@@ -66,11 +69,13 @@
         android:text="1000.5555555555"
         app:dfdAddTextStart="USD: "
         app:dfdAddTextEnd="$"
+        app:dfdCutLength="5"
+        app:dfdIsStripZero="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/decimalFormatUpTextView"
         tools:ignore="HardcodedText"
-        tools:text="1,000.55555555" />
+        tools:text="1,000.55555" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
