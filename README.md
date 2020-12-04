@@ -8,19 +8,20 @@
 ## 1. NumberFormatTextView
 
 -이것은 정수를 천 단위일 때마다 ","로 분리하는 TextView입니다.
+
 -This is a TextView that separates the integer into "," every thousand units.
 
 ### XML Attributes
 
 | Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
+|:------|:---|:---|
 | nfAddTextStart | 맨 앞에 문자열을 추가한다. | Add a string to the beginning. |
 | nfAddTextEnd | 맨 뒤에 문자열을 추가한다. | Add a string at the end. |
 
 ### Kotlin Function
 
 | Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
+|:------|:---|:---|
 | setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
 | getFormatText() | 오직 정수 값을 가져온다. | Only take a integer value. |
 <br/>
@@ -31,6 +32,7 @@
 ## 2. DecimalFormatTextView
 
 -이것은 소수를 천 단위일 때마다 ","로 분리하는 TextView입니다.
+
 -This is a TextView that separates the decimal number into "," every thousand units.
 
 ### XML Attributes
@@ -55,6 +57,7 @@
 ## 3. DecimalFormatUpTextView
 
 -이것은 소수를 천 단위일 때마다 ","로 분리하고 반올림하는 TextView입니다.
+
 -This is a TextView that separates and rounds the decimal number to "," every thousand units.
 
 ### XML Attributes
@@ -80,6 +83,7 @@
 ## 4. DecimalFormatDownTextView
 
 -이것은 소수를 천 단위일 때마다 ","로 분리하고 버림하는 TextView입니다.
+
 -This is a TextView that separates the decimal number into "," every thousand units and throws it away.
 
 ### XML Attributes
@@ -105,6 +109,7 @@
 ## 5. NumberFormatUtil
 
 -이것은 정수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.
+
 -This is an Object Class that separates an integer into "," every thousand units.
 
 ### Kotlin Function
@@ -120,6 +125,7 @@
 ## 6. DecimalFormatUtil
 
 -이것은 소수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.
+
 -This is an Object Class that separates an decimal into "," every thousand units.
 
 ### Kotlin Function
