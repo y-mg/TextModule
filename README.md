@@ -13,17 +13,43 @@
 
 ### XML Attributes
 
-| Name | Description(KO) | Description(EN) |
-------|----|----
-nfAddTextStart | 맨 앞에 문자열을 추가한다. | Add a string to the beginning. |
-nfAddTextEnd | 맨 뒤에 문자열을 추가한다. | Add a string at the end. |
+```xml
+<com.ymg.textmodule.number.NumberFormatTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="5000"
+    app:nfAddTextStart="Point: "
+    app:nfAddTextEnd="P" />
+```
+- app:nfAddTextStart
+    - 맨 앞에 문자열을 추가한다.
+    - Add a string to the beginning.
+
+- app:nfAddTextEnd
+    - 맨 뒤에 문자열을 추가한다.
+    - Add a string at the end.
+
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-------|----|----
-setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
-getFormatText() | 오직 정수 값을 가져온다. | Only take a integer value. |
+```kotlin
+
+/**
+ - 정수를 천 단위일 때마다 ","로 분리한다.
+ - Separate an integer with "," every thousand units.
+ */
+fun setFormatText(
+    text: String,
+    addTextStart: String,
+    addTextEnd: String
+)
+
+/**
+ - 오직 정수 값을 가져온다.
+ - Only take a integer value.
+ */
+fun getFormatText()
+```
 <br/>
 <br/>
 
