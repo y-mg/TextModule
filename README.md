@@ -10,6 +10,7 @@
 > 이것은 정수를 천 단위일 때마다 ","로 분리하는 TextView입니다.<br/>
 > This is a TextView that separates the integer into "," every thousand units.
 
+
 ### XML Attributes
 
 ```xml
@@ -32,10 +33,15 @@
 ### Kotlin Function
 
 ```kotlin
-
 /**
- - 정수를 천 단위일 때마다 ","로 분리한다.
- - Separate an integer with "," every thousand units.
+ * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - Separate an integer with "," every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param addTextStart -> Value to be added first
+ *
+ * @param addTextEnd -> Value to be added at the end
  */
 fun setFormatText(
     text: String,
@@ -44,8 +50,8 @@ fun setFormatText(
 )
 
 /**
- - 오직 정수 값을 가져온다.
- - Only take a integer value.
+ * - 오직 정수 값을 가져온다.
+ * - Only take a integer value.
  */
 fun getFormatText()
 ```
@@ -56,24 +62,61 @@ fun getFormatText()
 
 ## 2. DecimalFormatTextView
 
--이것은 소수를 천 단위일 때마다 ","로 분리하는 TextView입니다.
-
--This is a TextView that separates the decimal number into "," every thousand units.
+> 이것은 소수를 천 단위일 때마다 ","로 분리하는 TextView입니다.<br/>
+> This is a TextView that separates the decimal number into "," every thousand units.
 
 ### XML Attributes
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| dfAddTextStart | 맨 앞에 문자열을 추가한다. | Add a string to the beginning. |
-| dfAddTextEnd | 맨 뒤에 문자열을 추가한다. | Add a string at the end. |
-| dfIsStripZero | 소수 끝에 0을 제거한다. | Remove zero at the end of the decimal point. |
+```xml
+<com.ymg.textmodule.decimal.DecimalFormatTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1000.5555555555"
+    app:dfAddTextStart="BitCoin: "
+    app:dfAddTextEnd="BTC"
+    app:dfIsStripZero="true" />
+```
+- app:dfAddTextStart
+    - 맨 앞에 문자열을 추가한다.
+    - Add a string to the beginning.
+
+- app:dfAddTextEnd
+    - 맨 뒤에 문자열을 추가한다.
+    - Add a string at the end.
+
+- app:dfIsStripZero
+    - 소수 끝에 0을 제거한다.
+    - Remove zero at the end of the decimal point.
+
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
-| getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
+```kotlin
+/**
+ * - 소수를 천 단위일 때마다 ","로 분리한다.
+ * - Separate the decimal number with "," every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param addTextStart -> Value to be added first
+ *
+ * @param addTextEnd -> Value to be added at the end
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun setFormatText(
+    text: String,
+    addTextStart: String,
+    addTextEnd: String,
+    isStripZero: Boolean
+)
+
+/**
+ * - 오직 소수 값을 가져온다.
+ * - Only take a decimal value.
+ */
+fun getFormatText()
+```
 <br/>
 <br/>
 
@@ -81,25 +124,70 @@ fun getFormatText()
 
 ## 3. DecimalFormatUpTextView
 
--이것은 소수를 천 단위일 때마다 ","로 분리하고 반올림하는 TextView입니다.
+> 이것은 소수를 천 단위일 때마다 ","로 분리하고 반올림하는 TextView입니다.<br/>
+> This is a TextView that separates and rounds the decimal number to "," every thousand units.
 
--This is a TextView that separates and rounds the decimal number to "," every thousand units.
 
 ### XML Attributes
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| dfuAddTextStart | 맨 앞에 문자열을 추가한다. | Add a string to the beginning. |
-| dfuAddTextEnd | 맨 뒤에 문자열을 추가한다. | Add a string at the end. |
-| dfuCutLength | 반올림 자릿수이다. | It's a rounding digit. |
-| dfuIsStripZero | 소수 끝에 0을 제거한다. | Remove zero at the end of the decimal point. |
+```xml
+<com.ymg.textmodule.decimal.DecimalFormatUpTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1000.5555555555"
+    app:dfuAddTextStart="USD: "
+    app:dfuAddTextEnd="$"
+    app:dfuCutLength="5"
+    app:dfuIsStripZero="true" />
+```
+- app:dfuAddTextStart
+    - 맨 앞에 문자열을 추가한다.
+    - Add a string to the beginning.
+
+- app:dfuAddTextEnd
+    - 맨 뒤에 문자열을 추가한다.
+    - Add a string at the end.
+
+- app:dfuCutLength
+    - 반올림 자릿수이다.
+    - It's a rounding digit.
+
+- app:dfuIsStripZero
+    - 소수 끝에 0을 제거한다.
+    - Remove zero at the end of the decimal point.
+
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
-| getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
+```kotlin
+/**
+ * - 소수를 천 단위일 때마다 ","로 분리하고 반올림한다.
+ * - Separate the decimal number with "," and round it up every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param addTextStart -> Value to be added first
+ *
+ * @param addTextEnd -> Value to be added at the end
+ *
+ * @param cutLength -> Rounding digit
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun setFormatText(
+    text: String,
+    addTextStart: String,
+    addTextEnd: String,
+    cutLength: Int,
+    isStripZero: Boolean
+)
+
+/**
+ * - 오직 소수 값을 가져온다.
+ * - Only take a decimal value.
+ */
+fun getFormatText()
+```
 <br/>
 <br/>
 
@@ -107,25 +195,70 @@ fun getFormatText()
 
 ## 4. DecimalFormatDownTextView
 
--이것은 소수를 천 단위일 때마다 ","로 분리하고 버림하는 TextView입니다.
+> 이것은 소수를 천 단위일 때마다 ","로 분리하고 버림하는 TextView입니다.<br/>
+> This is a TextView that separates the decimal number into "," every thousand units and throws it away.
 
--This is a TextView that separates the decimal number into "," every thousand units and throws it away.
 
 ### XML Attributes
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| dfdAddTextStart | 맨 앞에 문자열을 추가한다. | Add a string to the beginning. |
-| dfdAddTextEnd | 맨 뒤에 문자열을 추가한다. | Add a string at the end. |
-| dfdCutLength | 버림 자릿수이다. | It's an abandoned digit. |
-| dfdIsStripZero | 소수 끝에 0을 제거한다. | Remove zero at the end of the decimal point. |
+```xml
+<com.ymg.textmodule.decimal.DecimalFormatDownTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1000.5555555555"
+    app:dfdAddTextStart="USD: "
+    app:dfdAddTextEnd="$"
+    app:dfdCutLength="5"
+    app:dfdIsStripZero="true" />
+```
+- app:dfdAddTextStart
+    - 맨 앞에 문자열을 추가한다.
+    - Add a string to the beginning.
+
+- app:dfdAddTextEnd
+    - 맨 뒤에 문자열을 추가한다.
+    - Add a string at the end.
+
+- app:dfdCutLength
+    - 버림 자릿수이다.
+    - It's an abandoned digit.
+
+- app:dfdIsStripZero
+    - 소수 끝에 0을 제거한다.
+    - Remove zero at the end of the decimal point.
+
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
-| getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
+```kotlin
+/**
+ * - 소수를 천 단위일 때마다 ","로 분리하고 버림한다.
+ * - Separate and discard the decimal number with "," every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param addTextStart -> Value to be added first
+ *
+ * @param addTextEnd -> Value to be added at the end
+ *
+ * @param cutLength -> Abandoned digit
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun setFormatText(
+    text: String,
+    addTextStart: String,
+    addTextEnd: String,
+    cutLength: Int,
+    isStripZero: Boolean
+)
+
+/**
+ * - 오직 소수 값을 가져온다.
+ * - Only take a decimal value.
+ */
+fun getFormatText()
+```
 <br/>
 <br/>
 
@@ -133,15 +266,21 @@ fun getFormatText()
 
 ## 5. NumberFormatUtil
 
--이것은 정수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.
+> 이것은 정수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.<br/>
+> This is an Object Class that separates an integer into "," every thousand units.
 
--This is an Object Class that separates an integer into "," every thousand units.
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| getNumberCommaFormat(<br/>&nbsp;&nbsp;&nbsp;text: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
+```kotlin
+/**
+ * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - Separate an integer with "," every thousand units.
+ *
+ * @param text -> Valute to Format
+ */
+fun getNumberCommaFormat(text: String)
+```
 <br/>
 <br/>
 
@@ -149,17 +288,58 @@ fun getFormatText()
 
 ## 6. DecimalFormatUtil
 
--이것은 소수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.
+> 이것은 소수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.<br/>
+> This is an Object Class that separates an decimal into "," every thousand units.
 
--This is an Object Class that separates an decimal into "," every thousand units.
 
 ### Kotlin Function
 
-| Name | Description(KO) | Description(EN) |
-|:----------|:-------|:-------|
-| getDecimalCommaFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
-| getDecimalCommaUpFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
-| getDecimalCommaDownFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
+```kotlin
+/**
+ * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - Separate an integer with "," every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun getNumberCommaFormat(
+    text: String,
+    isStripZero: Boolean
+)
+
+/**
+ * - 소수를 천 단위일 때마다 ","로 분리하고 반올림한다.
+ * - Separate the decimal number with "," and round it up every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param length -> Rounding digit
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun getDecimalCommaUpFormat(
+    text: String,
+    length: Int,
+    isStripZero: Boolean
+)
+
+/**
+ * - 소수를 천 단위일 때마다 ","로 분리하고 버림한다.
+ * - Separate and discard the decimal number with "," every thousand units.
+ *
+ * @param text -> Value to Format
+ *
+ * @param length -> Abandoned digit
+ *
+ * @param isStripZero -> Zero Removal Status
+ */
+fun getDecimalCommaDownFormat(
+    text: String,
+    length: Int,
+    isStripZero: Boolean
+)
+```
 <br/>
 <br/>
 
