@@ -7,9 +7,8 @@
 
 ## 1. NumberFormatTextView
 
--이것은 정수를 천 단위일 때마다 ","로 분리하는 TextView입니다.
-
--This is a TextView that separates the integer into "," every thousand units.
+> 이것은 정수를 천 단위일 때마다 ","로 분리하는 TextView입니다.
+> This is a TextView that separates the integer into "," every thousand units.
 
 ### XML Attributes
 
