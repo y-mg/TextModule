@@ -21,7 +21,7 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextEnd: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
+| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
 | getFormatText() | 오직 정수 값을 가져온다. | Only take a integer value. |
 <br/>
 <br/>
@@ -45,7 +45,7 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
+| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
 | getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
 <br/>
 <br/>
@@ -70,7 +70,7 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
+| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
 | getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
 <br/>
 <br/>
@@ -95,7 +95,7 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| setFormatText(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
+| setFormatText(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;addTextStart: String,<br/>&nbsp;&nbsp;&nbsp;addTextEnd: String,<br/>&nbsp;&nbsp;&nbsp;cutLength: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
 | getFormatText() | 오직 소수 값을 가져온다. | Only take a decimal value. |
 <br/>
 <br/>
@@ -111,7 +111,7 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| getNumberCommaFormat(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
+| getNumberCommaFormat(<br/>&nbsp;&nbsp;&nbsp;text: String<br/>) | 정수를 천 단위일 때마다 ","로 분리한다. | Separate an integer with "," every thousand units. |
 <br/>
 <br/>
 
@@ -126,9 +126,9 @@
 
 | Name | Description(KO) | Description(EN) |
 |:----------|:----------|:----------|
-| getDecimalCommaFormat(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
-| getDecimalCommaUpFormat(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
-| getDecimalCommaDownFormat(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
+| getDecimalCommaFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리한다. | Separate the decimal number with "," every thousand units. |
+| getDecimalCommaUpFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 반올림한다. | Separate the decimal number with "," and round it up every thousand units. |
+| getDecimalCommaDownFormat(<br/>&nbsp;&nbsp;&nbsp;text: String,<br/>&nbsp;&nbsp;&nbsp;length: Int,<br/>&nbsp;&nbsp;&nbsp;isStripZero: Boolean<br/>) | 소수를 천 단위일 때마다 ","로 분리하고 버림한다. | Separate and discard the decimal number with "," every thousand units. |
 <br/>
 <br/>
 
