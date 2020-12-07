@@ -84,12 +84,12 @@ class DecimalFormatTextView : AppCompatTextView {
 
 
     /**
-     * Init Setting
+     * Setting Init
      */
     private fun setInit(
-        addTextStart: String = "",
-        addTextEnd: String = "",
-        isStripZero: Boolean = true
+        addTextStart: String,
+        addTextEnd: String,
+        isStripZero: Boolean
     ) {
         setFormatText(this.text.toString(), addTextStart, addTextEnd, isStripZero)
     }

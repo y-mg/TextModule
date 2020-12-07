@@ -11,7 +11,7 @@ import com.ymg.textmodule.R
 /**
  * @author y-mg
  *
- * 이것은 정수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.<br/>
+ * 이것은 정수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.
  * This is a TextView that separates the integer into "," every thousand units.
  */
 class NumberFormatTextView : AppCompatTextView {
@@ -74,11 +74,11 @@ class NumberFormatTextView : AppCompatTextView {
 
 
     /**
-     * Init Setting
+     * Setting Init
      */
     private fun setInit(
-        addTextStart: String = "",
-        addTextEnd: String = ""
+        addTextStart: String,
+        addTextEnd: String
     ) {
         setFormatText(this.text.toString(), addTextStart, addTextEnd)
     }
