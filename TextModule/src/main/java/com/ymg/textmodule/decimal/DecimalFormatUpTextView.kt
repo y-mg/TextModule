@@ -8,16 +8,17 @@ import com.ymg.textmodule.R
 
 
 
+/**
+ * @author y-mg
+ *
+ * 이것은 소수를 천 단위일 때마다 "," 로 분리하고 반올림하는 TextView 입니다.
+ * This is a TextView that separates and rounds the decimal number to "," every thousand units.
+ */
 class DecimalFormatUpTextView : AppCompatTextView {
 
-    // Text 앞에 붙일 텍스트, Text 뒤에 붙일 텍스트
     private var addTextStart: String = ""
     private var addTextEnd: String = ""
-
-    // 소수점 반올림 자릿수
     private var cutLength: Int = 8
-
-    // 소수 끝에 0 제거 여부
     private var isStripZero: Boolean = true
 
 
@@ -48,27 +49,30 @@ class DecimalFormatUpTextView : AppCompatTextView {
                 defStyleAttr
             )
 
-
-        // 텍스트 앞에 추가할 텍스트
+        // 맨 앞에 문자열을 추가한다.
+        // Add a string to the beginning.
         val addTextStart =
             typedArray?.getString(
                 R.styleable.DecimalFormatUpTextStyle_dfuAddTextStart
             )
 
-        // 텍스트 뒤에 추가할 텍스트
+        // 맨 뒤에 문자열을 추가한다.
+        // Add a string at the end.
         val addTextEnd =
             typedArray?.getString(
                 R.styleable.DecimalFormatUpTextStyle_dfuAddTextEnd
             )
 
-        // 소수점 반올림 길이
+        // 반올림 자릿수이다.
+        // It's a rounding digit.
         val cutLength =
             typedArray?.getInt(
                 R.styleable.DecimalFormatUpTextStyle_dfuCutLength,
                 8
             )
 
-        // 소수 끝에 0 제거 여부
+        // 소수 끝에 0을 제거한다.
+        // Remove zero at the end of the decimal point.
         val isStripZero =
             typedArray?.getBoolean(
                 R.styleable.DecimalFormatUpTextStyle_dfuIsStripZero,
@@ -89,7 +93,7 @@ class DecimalFormatUpTextView : AppCompatTextView {
 
 
     /**
-     * 설정
+     * Init Setting
      */
     private fun setInit(
         addTextStart: String = "",
@@ -103,11 +107,22 @@ class DecimalFormatUpTextView : AppCompatTextView {
 
 
     /**
-     * 값 설정
+     * - 소수를 천 단위일 때마다 "," 로 분리하고 반올림한다.
+     * - Separate the decimal number with "," and round it up every thousand units.
+     *
+     * @param text -> Value to Format
+     *
+     * @param addTextStart -> Value to be added first
+     *
+     * @param addTextEnd -> Value to be added at the end
+     *
+     * @param cutLength -> Rounding digit
+     *
+     * @param isStripZero -> Zero Removal Status
      */
     @SuppressLint("SetTextI18n")
     fun setFormatText(
-        text: String = "",
+        text: String = this.text.toString(),
         addTextStart: String = this.addTextStart,
         addTextEnd: String = this.addTextEnd,
         cutLength: Int = this.cutLength,
@@ -131,7 +146,8 @@ class DecimalFormatUpTextView : AppCompatTextView {
 
 
     /**
-     * 값 가져오기
+     * - 오직 소수 값을 가져온다.
+     * - Only take a decimal value.
      */
     fun getFormatText(): String {
         return this.text.toString().replace("[^[-]?\\d.]".toRegex(), "")

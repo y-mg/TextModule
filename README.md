@@ -7,7 +7,7 @@
 
 ## 1. NumberFormatTextView
 
-> 이것은 정수를 천 단위일 때마다 ","로 분리하는 TextView입니다.<br/>
+> 이것은 정수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.<br/>
 > This is a TextView that separates the integer into "," every thousand units.
 
 
@@ -34,7 +34,7 @@
 
 ```kotlin
 /**
- * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - 정수를 천 단위일 때마다 "," 로 분리한다.
  * - Separate an integer with "," every thousand units.
  *
  * @param text -> Value to Format
@@ -62,8 +62,9 @@ fun getFormatText()
 
 ## 2. DecimalFormatTextView
 
-> 이것은 소수를 천 단위일 때마다 ","로 분리하는 TextView입니다.<br/>
+> 이것은 소수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.<br/>
 > This is a TextView that separates the decimal number into "," every thousand units.
+
 
 ### XML Attributes
 
@@ -93,7 +94,7 @@ fun getFormatText()
 
 ```kotlin
 /**
- * - 소수를 천 단위일 때마다 ","로 분리한다.
+ * - 소수를 천 단위일 때마다 "," 로 분리한다.
  * - Separate the decimal number with "," every thousand units.
  *
  * @param text -> Value to Format
@@ -124,7 +125,7 @@ fun getFormatText()
 
 ## 3. DecimalFormatUpTextView
 
-> 이것은 소수를 천 단위일 때마다 ","로 분리하고 반올림하는 TextView입니다.<br/>
+> 이것은 소수를 천 단위일 때마다 "," 로 분리하고 반올림하는 TextView 입니다.<br/>
 > This is a TextView that separates and rounds the decimal number to "," every thousand units.
 
 
@@ -161,7 +162,7 @@ fun getFormatText()
 
 ```kotlin
 /**
- * - 소수를 천 단위일 때마다 ","로 분리하고 반올림한다.
+ * - 소수를 천 단위일 때마다 "," 로 분리하고 반올림한다.
  * - Separate the decimal number with "," and round it up every thousand units.
  *
  * @param text -> Value to Format
@@ -195,7 +196,7 @@ fun getFormatText()
 
 ## 4. DecimalFormatDownTextView
 
-> 이것은 소수를 천 단위일 때마다 ","로 분리하고 버림하는 TextView입니다.<br/>
+> 이것은 소수를 천 단위일 때마다 "," 로 분리하고 버림하는 TextView 입니다.<br/>
 > This is a TextView that separates the decimal number into "," every thousand units and throws it away.
 
 
@@ -232,7 +233,7 @@ fun getFormatText()
 
 ```kotlin
 /**
- * - 소수를 천 단위일 때마다 ","로 분리하고 버림한다.
+ * - 소수를 천 단위일 때마다 "," 로 분리하고 버림한다.
  * - Separate and discard the decimal number with "," every thousand units.
  *
  * @param text -> Value to Format
@@ -266,7 +267,7 @@ fun getFormatText()
 
 ## 5. NumberFormatUtil
 
-> 이것은 정수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.<br/>
+> 이것은 정수를 천 단위일 때마다 "," 로 분리하는 Object 클래스입니다.<br/>
 > This is an Object Class that separates an integer into "," every thousand units.
 
 
@@ -274,10 +275,10 @@ fun getFormatText()
 
 ```kotlin
 /**
- * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - 정수를 천 단위일 때마다 "," 로 분리한다.
  * - Separate an integer with "," every thousand units.
  *
- * @param text -> Valute to Format
+ * @param text -> Value to Format
  */
 fun getNumberCommaFormat(text: String)
 ```
@@ -288,7 +289,7 @@ fun getNumberCommaFormat(text: String)
 
 ## 6. DecimalFormatUtil
 
-> 이것은 소수를 천 단위일 때마다 ","로 분리하는 Object 클래스입니다.<br/>
+> 이것은 소수를 천 단위일 때마다 "," 로 분리하는 Object 클래스입니다.<br/>
 > This is an Object Class that separates an decimal into "," every thousand units.
 
 
@@ -296,7 +297,7 @@ fun getNumberCommaFormat(text: String)
 
 ```kotlin
 /**
- * - 정수를 천 단위일 때마다 ","로 분리한다.
+ * - 정수를 천 단위일 때마다 "," 로 분리한다.
  * - Separate an integer with "," every thousand units.
  *
  * @param text -> Value to Format
@@ -309,7 +310,7 @@ fun getNumberCommaFormat(
 )
 
 /**
- * - 소수를 천 단위일 때마다 ","로 분리하고 반올림한다.
+ * - 소수를 천 단위일 때마다 "," 로 분리하고 반올림한다.
  * - Separate the decimal number with "," and round it up every thousand units.
  *
  * @param text -> Value to Format
@@ -325,7 +326,7 @@ fun getDecimalCommaUpFormat(
 )
 
 /**
- * - 소수를 천 단위일 때마다 ","로 분리하고 버림한다.
+ * - 소수를 천 단위일 때마다 "," 로 분리하고 버림한다.
  * - Separate and discard the decimal number with "," every thousand units.
  *
  * @param text -> Value to Format

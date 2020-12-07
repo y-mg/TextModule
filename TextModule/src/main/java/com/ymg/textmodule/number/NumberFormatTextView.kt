@@ -8,9 +8,14 @@ import com.ymg.textmodule.R
 
 
 
+/**
+ * @author y-mg
+ *
+ * 이것은 정수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.<br/>
+ * This is a TextView that separates the integer into "," every thousand units.
+ */
 class NumberFormatTextView : AppCompatTextView {
 
-    // Text 앞에 붙일 텍스트, Text 뒤에 붙일 텍스트
     private var addTextStart: String = ""
     private var addTextEnd: String = ""
 
@@ -43,14 +48,15 @@ class NumberFormatTextView : AppCompatTextView {
                 defStyleAttr
             )
 
-
-        // 텍스트 앞에 추가할 텍스트
+        // 맨 앞에 문자열을 추가한다.
+        // Add a string to the beginning.
         val addTextStart =
             typedArray?.getString(
                 R.styleable.NumberFormatTextStyle_nfAddTextStart
             )
 
-        // 텍스트 뒤에 추가할 텍스트
+        // 맨 뒤에 문자열을 추가한다.
+        // Add a string at the end.
         val addTextEnd =
             typedArray?.getString(
                 R.styleable.NumberFormatTextStyle_nfAddTextEnd
@@ -68,7 +74,7 @@ class NumberFormatTextView : AppCompatTextView {
 
 
     /**
-     * 설정
+     * Init Setting
      */
     private fun setInit(
         addTextStart: String = "",
@@ -80,11 +86,18 @@ class NumberFormatTextView : AppCompatTextView {
 
 
     /**
-     * 값 설정
+     * - 정수를 천 단위일 때마다 "," 로 분리한다.
+     * - Separate an integer with "," every thousand units.
+     *
+     * @param text -> Value to Format
+     *
+     * @param addTextStart -> Value to be added first
+     *
+     * @param addTextEnd -> Value to be added at the end
      */
     @SuppressLint("SetTextI18n")
     fun setFormatText(
-        text: String = "",
+        text: String = this.text.toString(),
         addTextStart: String = this.addTextStart,
         addTextEnd: String = this.addTextEnd
     ) {
@@ -104,7 +117,8 @@ class NumberFormatTextView : AppCompatTextView {
 
 
     /**
-     * 값 가져오기
+     * - 오직 정수 값을 가져온다.
+     * - Only take a integer value.
      */
     fun getFormatText(): String {
         return this.text.toString().replace("[^\\d]".toRegex(), "")

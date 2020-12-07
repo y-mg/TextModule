@@ -7,10 +7,21 @@ import java.text.NumberFormat
 
 
 
+/**
+ * @author y-mg
+ *
+ * 이것은 소수를 천 단위일 때마다 "," 로 분리하는 Object 클래스입니다.
+ * This is an Object Class that separates an decimal into "," every thousand units.
+ */
 object DecimalFormatUtil {
 
     /**
-     * , 로 구분
+     * - 정수를 천 단위일 때마다 "," 로 분리한다.
+     * - Separate an integer with "," every thousand units.
+     *
+     * @param text -> Value to Format
+     *
+     * @param isStripZero -> Zero Removal Status
      */
     fun getDecimalCommaFormat(text: String, isStripZero: Boolean = true): String {
         val value = when (isStripZero) {
@@ -52,7 +63,14 @@ object DecimalFormatUtil {
 
 
     /**
-     * , 로 구분 + 소수점 반올림
+     * - 소수를 천 단위일 때마다 "," 로 분리하고 반올림한다.
+     * - Separate the decimal number with "," and round it up every thousand units.
+     *
+     * @param text -> Value to Format
+     *
+     * @param length -> Rounding digit
+     *
+     * @param isStripZero -> Zero Removal Status
      */
     fun getDecimalCommaUpFormat(text: String, length: Int, isStripZero: Boolean = true): String {
         val value = when (isStripZero) {
@@ -95,7 +113,14 @@ object DecimalFormatUtil {
 
 
     /**
-     * , 로 구분 + 소수점 내림
+     * - 소수를 천 단위일 때마다 "," 로 분리하고 버림한다.
+     * - Separate and discard the decimal number with "," every thousand units.
+     *
+     * @param text -> Value to Format
+     *
+     * @param length -> Abandoned digit
+     *
+     * @param isStripZero -> Zero Removal Status
      */
     fun getDecimalCommaDownFormat(text: String, length: Int, isStripZero: Boolean = true): String {
         val value = when (isStripZero) {

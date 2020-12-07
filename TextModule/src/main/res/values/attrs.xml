@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Number Format Text -->
+    <!-- NumberFormatTextView -->
     <declare-styleable name="NumberFormatTextStyle">
         <attr name="nfAddTextStart" format="string"/>
         <attr name="nfAddTextEnd" format="string"/>
@@ -9,7 +9,7 @@
 
 
 
-    <!-- Decimal Format Text -->
+    <!-- DecimalFormatTextView -->
     <declare-styleable name="DecimalFormatTextStyle">
         <attr name="dfAddTextStart" format="string"/>
         <attr name="dfAddTextEnd" format="string"/>
@@ -18,7 +18,7 @@
 
 
 
-    <!-- Decimal Format Up Text -->
+    <!-- DecimalFormatUpTextView -->
     <declare-styleable name="DecimalFormatUpTextStyle">
         <attr name="dfuAddTextStart" format="string"/>
         <attr name="dfuAddTextEnd" format="string"/>
@@ -28,7 +28,7 @@
 
 
 
-    <!-- Decimal Format Down Text -->
+    <!-- DecimalFormatDownTextView -->
     <declare-styleable name="DecimalFormatDownTextStyle">
         <attr name="dfdAddTextStart" format="string"/>
         <attr name="dfdAddTextEnd" format="string"/>
