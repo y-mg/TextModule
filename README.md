@@ -6,6 +6,8 @@
 
 
 ## Install
+[![](https://jitpack.io/v/y-mg/textmodule.svg)](https://jitpack.io/#y-mg/textmodule)
+
 Add Jitpack to your repositories in your `build.gradle` file
 
 ```groovy
