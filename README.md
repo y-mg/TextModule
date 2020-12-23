@@ -5,6 +5,28 @@
 
 
 
+## Install
+Add Jitpack to your repositories in your `build.gradle` file
+
+```groovy
+allprojects {
+    repositories {
+      // ...
+      maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Add the below to your dependencies, again in your gradle.build file
+
+```groovy
+implementation 'com.github.y-mg:TextModule:{version}'
+```
+<br/>
+<br/>
+
+
+
 ## 1. NumberFormatTextView
 
 > 이것은 정수를 천 단위일 때마다 "," 로 분리하는 TextView 입니다.<br/>
@@ -21,11 +43,11 @@
     app:nfAddTextStart="Point: "
     app:nfAddTextEnd="P" />
 ```
-- app:nfAddTextStart
+- `app:nfAddTextStart`
     - 맨 앞에 문자열을 추가한다.
     - Add a string to the beginning.
 
-- app:nfAddTextEnd
+- `app:nfAddTextEnd`
     - 맨 뒤에 문자열을 추가한다.
     - Add a string at the end.
 
@@ -77,15 +99,15 @@ fun getFormatText()
     app:dfAddTextEnd="BTC"
     app:dfIsStripZero="true" />
 ```
-- app:dfAddTextStart
+- `app:dfAddTextStart`
     - 맨 앞에 문자열을 추가한다.
     - Add a string to the beginning.
 
-- app:dfAddTextEnd
+- `app:dfAddTextEnd`
     - 맨 뒤에 문자열을 추가한다.
     - Add a string at the end.
 
-- app:dfIsStripZero
+- `app:dfIsStripZero`
     - 소수 끝에 0을 제거한다.
     - Remove zero at the end of the decimal point.
 
@@ -141,19 +163,19 @@ fun getFormatText()
     app:dfuCutLength="5"
     app:dfuIsStripZero="true" />
 ```
-- app:dfuAddTextStart
+- `app:dfuAddTextStart`
     - 맨 앞에 문자열을 추가한다.
     - Add a string to the beginning.
 
-- app:dfuAddTextEnd
+- `app:dfuAddTextEnd`
     - 맨 뒤에 문자열을 추가한다.
     - Add a string at the end.
 
-- app:dfuCutLength
+- `app:dfuCutLength`
     - 반올림 자릿수이다.
     - It's a rounding digit.
 
-- app:dfuIsStripZero
+- `app:dfuIsStripZero`
     - 소수 끝에 0을 제거한다.
     - Remove zero at the end of the decimal point.
 
@@ -212,19 +234,19 @@ fun getFormatText()
     app:dfdCutLength="5"
     app:dfdIsStripZero="true" />
 ```
-- app:dfdAddTextStart
+- `app:dfdAddTextStart`
     - 맨 앞에 문자열을 추가한다.
     - Add a string to the beginning.
 
-- app:dfdAddTextEnd
+- `app:dfdAddTextEnd`
     - 맨 뒤에 문자열을 추가한다.
     - Add a string at the end.
 
-- app:dfdCutLength
+- `app:dfdCutLength`
     - 버림 자릿수이다.
     - It's an abandoned digit.
 
-- app:dfdIsStripZero
+- `app:dfdIsStripZero`
     - 소수 끝에 0을 제거한다.
     - Remove zero at the end of the decimal point.
 
