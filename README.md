@@ -20,7 +20,7 @@ allprojects {
 Add the below to your dependencies, again in your gradle.build file
 
 ```groovy
-implementation 'com.github.y-mg:TextModule:{version}'
+implementation 'com.github.y-mg:textmodule:{version}'
 ```
 <br/>
 <br/>
